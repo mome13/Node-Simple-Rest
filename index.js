@@ -3,7 +3,8 @@ const express = require('express');
 const helmet = require('helmet');
 var cors = require('cors');
 const hpp = require('hpp');
-const { VERSION, API_VERSION } = require('./constants');
+const { VERSION } = require('./constants');
+const database = require('./database');
 const { errorHandler } = require('./utils');
 const app = express();
 
@@ -15,8 +16,13 @@ app.use(express.json());
 
 app.get('/', (req, res) => res.send(VERSION));
 
+app.use(errorHandler);
 
-app.use(errorHandler)
+async function connectToDatabase() {
+  await database.connect();
+}
+connectToDatabase().then((err) => console.log(err));
+
 const PORT = process.env.PORT || 5008;
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
