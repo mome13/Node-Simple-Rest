@@ -6,6 +6,7 @@ const hpp = require('hpp');
 const { VERSION } = require('./constants');
 const database = require('./database');
 const { errorHandler } = require('./utils');
+var apiRouter = require('./routes/api');
 const app = express();
 
 app.use(hpp());
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.get('/', (req, res) => res.send(VERSION));
+app.use('/api', apiRouter);
 
 app.use(errorHandler);
 
