@@ -23,6 +23,7 @@
 	},
 	"homepage": "https://github.com/mome13/Node-Simple-Rest#readme",
 	"dependencies": {
+		"bcryptjs": "^2.4.3",
 		"codacy-coverage": "^3.4.0",
 		"cors": "^2.8.5",
 		"dotenv": "^10.0.0",
