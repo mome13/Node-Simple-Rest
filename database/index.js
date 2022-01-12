@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const dbName = 'notifications';
 const mongo = {
-  uri: `mongodb://localhost:27017/${dbName}`,
+  uri: `${process.env.MONGODB_URL}${dbName}`,
   opt: {
     useNewUrlParser: true,
     useCreateIndex: true,
