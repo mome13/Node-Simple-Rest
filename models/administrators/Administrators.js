@@ -13,13 +13,10 @@ const tempAdministratorSchema = new Schema(
 		fullName: {
 			type: String,
 		},
-		confirmOTP: {
-			type: Number,
-		},
 		registerStep: {
 			type: Number,
 		},
-		createdAt: { type: Date, default: Date.now, index: { expires: 18000 } }, // after 5h delete this
+		createdAt: { type: Date, default: Date.now },
 	},
 	{
 		timestamps: true,
@@ -27,3 +24,4 @@ const tempAdministratorSchema = new Schema(
 );
 
 module.exports = mongoose.model('TempAdministrator', tempAdministratorSchema);
+
