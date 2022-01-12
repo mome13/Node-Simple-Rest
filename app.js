@@ -19,7 +19,7 @@ app.get('/', (req, res) => res.send(VERSION));
 app.use(errorHandler);
 
 async function connectToDatabase() {
-  await database.connect();
+	await database.connect();
 }
 connectToDatabase().then((err) => console.log(err));
 
