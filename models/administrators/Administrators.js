@@ -23,5 +23,5 @@ const tempAdministratorSchema = new Schema(
 	}
 );
 
-module.exports = mongoose.model('TempAdministrator', tempAdministratorSchema);
+module.exports = mongoose.model('Administrator', tempAdministratorSchema);
 
