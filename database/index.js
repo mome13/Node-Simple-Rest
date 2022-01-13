@@ -1,8 +1,7 @@
 'use strict';
 const mongoose = require('mongoose');
-const dbName = 'notifications';
 const mongo = {
-	uri: `${process.env.MONGODB_URL}${dbName}`,
+	uri: `${process.env.MONGODB_URL}${process.env.dbName}`,
 	opt: {
 		useNewUrlParser: true,
 		useCreateIndex: true,
