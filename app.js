@@ -6,6 +6,7 @@ const hpp = require('hpp');
 const { VERSION } = require('./constants');
 const database = require('./database');
 const { errorHandler } = require('./utils');
+var apiRouter = require('./routes/api');
 const app = express();
 
 app.use(hpp());
@@ -15,13 +16,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.get('/', (req, res) => res.send(VERSION));
+app.use('/api', apiRouter);
 
 app.use(errorHandler);
 
 async function connectToDatabase() {
-  await database.connect();
+	await database.connect();
 }
-connectToDatabase().then((err) => console.log(err));
+connectToDatabase().then((err) => err ? console.log(err) : console.log('Db connected successfully'));
 
 const PORT = process.env.PORT || 5008;
 

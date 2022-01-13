@@ -1,33 +1,45 @@
 {
-  "name": "node-simple-rest",
-  "version": "0.0.0",
-  "description": "This is a simple sample node app",
-  "main": "index.js",
-  "scripts": {
-    "start": "node app",
-    "dev": "nodemon app",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mome13/Node-Simple-Rest.git"
-  },
-  "keywords": [
-    "NodeJs"
-  ],
-  "author": "Mehran13Mome",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mome13/Node-Simple-Rest/issues"
-  },
-  "homepage": "https://github.com/mome13/Node-Simple-Rest#readme",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "express-validation": "^3.0.8",
-    "helmet": "^4.6.0",
-    "hpp": "^0.2.3",
-    "mongoose": "^5.13.3"
-  }
+	"name": "node-simple-rest",
+	"version": "0.0.0",
+	"description": "This is a simple sample node app",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app",
+		"dev": "nodemon app",
+		"test": "nyc _mocha --timeout 10000 --exit --report lcovonly -- -R spec",
+		"lint": "eslint --fix --config .eslintrc.json \"**/*.js\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mome13/Node-Simple-Rest.git"
+	},
+	"keywords": [
+		"NodeJs"
+	],
+	"author": "Mehran13Mome",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/mome13/Node-Simple-Rest/issues"
+	},
+	"homepage": "https://github.com/mome13/Node-Simple-Rest#readme",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"codacy-coverage": "^3.4.0",
+		"cors": "^2.8.5",
+		"dotenv": "^10.0.0",
+		"express": "^4.17.1",
+		"express-validation": "^3.0.8",
+		"helmet": "^4.6.0",
+		"hpp": "^0.2.3",
+		"jsonwebtoken": "^8.5.1",
+		"mocha-lcov-reporter": "^1.3.0",
+		"mongoose": "^5.13.3"
+	},
+	"devDependencies": {
+		"chai": "^4.2.0",
+		"chai-http": "^4.3.0",
+		"eslint": "^6.5.1",
+		"mocha": "^6.2.2",
+		"nyc": "^14.1.1"
+	}
 }

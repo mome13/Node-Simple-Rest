@@ -10,3 +10,12 @@
 /log/
 
 *.todo
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# nyc test coverage
+.nyc_output
+
+# Optional eslint cache
+.eslintcache
