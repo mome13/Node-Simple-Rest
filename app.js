@@ -23,7 +23,7 @@ app.use(errorHandler);
 async function connectToDatabase() {
 	await database.connect();
 }
-connectToDatabase().then((err) => console.log(err));
+connectToDatabase().then((err) => err ? console.log(err) : console.log('Db connected successfully'));
 
 const PORT = process.env.PORT || 5008;
 
