@@ -1,6 +1,6 @@
-const { chai, server, should } = require('./testConfig');
-const TempAdministrators = require('../models/administrators/TempAdministrators');
-const Administrators = require('../models/administrators/Administrators');
+const { chai, server } = require('../../test/testConfig');
+const TempAdministrators = require('../../models/administrators/TempAdministrators');
+const Administrators = require('../../models/administrators/Administrators');
 
 describe('Register', () => {
 	before((done) => {
