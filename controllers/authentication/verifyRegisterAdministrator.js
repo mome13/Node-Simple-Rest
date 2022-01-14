@@ -29,6 +29,8 @@ async function validateOTP(OTP, email) {
 async function makeTempAdminPermanent(tempAdmin) {
 	const permanentAdmin = new Administrators({
 		_id: tempAdmin._id,
+		email: tempAdmin.email,
+		password: tempAdmin.password,
 		fullName: tempAdmin.fullName,
 	});
 	await permanentAdmin.save();
