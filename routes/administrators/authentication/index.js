@@ -14,4 +14,10 @@ router.post(
 	register.createAdministrator
 );
 
+router.post(
+	'/verify-register',
+	validate(registerValidation('verify-register')),
+	register.verifyRegisterAdministrator
+);
+
 module.exports = router;
