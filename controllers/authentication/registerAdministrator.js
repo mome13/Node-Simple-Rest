@@ -2,7 +2,7 @@ const { asyncHandler, BaseError, passwordHandler } = require('../../utils');
 const TempAdministrators = require('../../models/administrators/TempAdministrators');
 const Administrators = require('../../models/administrators/Administrators');
 
-exports.createAdministrator = asyncHandler(async (req, res) => {
+module.exports = asyncHandler(async function register(req, res) {
 	const { email, password, fullName } = req.body;
 
 	const hashedPassword = passwordHandler.createPasswordHash(password);
@@ -12,6 +12,8 @@ exports.createAdministrator = asyncHandler(async (req, res) => {
 		password: hashedPassword,
 		fullName,
 	});
+
+	//TODO: Send a code to user's email
 	return res.json({
 		message: 'Admin created!',
 		fullName: newAdministrator.fullName,
