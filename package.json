@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "node app",
 		"dev": "nodemon app",
-		"test": "nyc _mocha --timeout 10000 --exit --report lcovonly -- -R spec",
+		"test": "nyc _mocha '{,!(node_modules)/**}/*.test.js' --timeout 10000 --exit --report lcovonly -- -R spec",
 		"lint": "eslint --fix --config .eslintrc.json \"**/*.js\""
 	},
 	"repository": {
