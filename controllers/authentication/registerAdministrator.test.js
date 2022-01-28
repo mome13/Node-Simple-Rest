@@ -1,6 +1,6 @@
-const { chai, server, should } = require('./testConfig');
-const TempAdministrators = require('../models/administrators/TempAdministrators');
-const Administrators = require('../models/administrators/Administrators');
+const { chai, server } = require('../../test/testConfig');
+const TempAdministrators = require('../../models/administrators/TempAdministrators');
+const Administrators = require('../../models/administrators/Administrators');
 
 describe('Register', () => {
 	before((done) => {
@@ -17,17 +17,15 @@ describe('Register', () => {
 		email: 'maitraysuthar@test12345.com',
 	};
 
-	describe('/POST Register', () => {
-		it('It should send validation error for Register', (done) => {
-			chai
-				.request(server)
-				.post('/api/auth/register')
-				.send({ email: testData.email })
-				.end((err, res) => {
-					res.should.have.status(400);
-					done();
-				});
-		});
+	it('It should send validation error for Register', (done) => {
+		chai
+			.request(server)
+			.post('/api/auth/register')
+			.send({ email: testData.email })
+			.end((err, res) => {
+				res.should.have.status(400);
+				done();
+			});
 	});
 
 	describe('/POST Register', () => {
@@ -41,6 +39,12 @@ describe('Register', () => {
 					res.body.should.have.property('message').eql('Admin created!');
 					done();
 				});
+		});
+		after((done) => {
+			TempAdministrators.deleteOne({ email: testData.email }, null, (err) => {
+				if (err) done(err);
+				done();
+			});
 		});
 	});
 
@@ -69,6 +73,12 @@ describe('Register', () => {
 					res.body.should.have.property('message').eql('duplicate email');
 					done();
 				});
+		});
+		after((done) => {
+			Administrators.deleteOne({ email: user.email }, null, (err) => {
+				if (err) done(err);
+				done();
+			});
 		});
 	});
 });

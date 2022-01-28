@@ -1,1 +1,4 @@
-module.exports.register = require('./registerAdministrator');
+module.exports.register = {
+	createAdministrator: require('./registerAdministrator'),
+	verifyRegisterAdministrator: require('./verifyRegisterAdministrator')
+}

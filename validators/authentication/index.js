@@ -11,5 +11,13 @@ exports.registerValidation = (method) => {
 				fullName: Joi.string().required()
 			}),
 		};
+	
+	case 'verify-register':
+		return {
+			body: Joi.object({
+				email: Joi.string().email().required(),
+				OTP: Joi.number().required()
+			}),
+		};
 	}
 };
