@@ -2,7 +2,7 @@ const { asyncHandler, BaseError, passwordHandler, OTPHandler } = require('../../
 const TempAdministrators = require('../../models/administrators/TempAdministrators');
 const Administrators = require('../../models/administrators/Administrators');
 
-module.exports = asyncHandler(async function register(req, res) {
+const createTempAdministrator = asyncHandler(async function (req, res) {
 	const { email, password, fullName } = req.body;
 
 	const alreadyTempAdmin = await checkRegisteredEmails(email);
@@ -17,6 +17,23 @@ module.exports = asyncHandler(async function register(req, res) {
 		fullName: newAdministrator.fullName,
 	});
 });
+
+const resendCode = asyncHandler(async function (req, res) {
+	const { email } = req.body;
+
+	const confirmOTP = await setNewOTP(email);
+	console.log('your new ConfirmOTP', confirmOTP)
+
+	return res.json({
+		message: 'OTP Updated!',
+	});
+});
+
+async function setNewOTP(tempAdminEmail) {
+	const confirmOTP = OTPHandler.createOTP()
+	await TempAdministrators.findOneAndUpdate({email: tempAdminEmail}, {confirmOTP});
+	return confirmOTP;
+}
 
 async function checkRegisteredEmails(email) {
 	const [duplicate, alreadyTempAdmin] = await Promise.all([
@@ -49,4 +66,10 @@ async function createTempAdminObject(
 	});
 	await newAdmin.save();
 	return newAdmin;
+}
+
+
+module.exports = {
+	createTempAdministrator,
+	resendCode
 }
