@@ -15,6 +15,12 @@ router.post(
 );
 
 router.post(
+	'/register-resend',
+	validate(registerValidation('register-resend')),
+	register.resendCode
+);
+
+router.post(
 	'/verify-register',
 	validate(registerValidation('verify-register')),
 	register.verifyRegisterAdministrator
