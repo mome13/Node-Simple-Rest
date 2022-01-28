@@ -1,3 +1,1 @@
-module.exports.createOTP = () => {
-	return 1234
-};
+module.exports.createOTP = () =>  Math.floor(Math.random() * 90000) + 10000;
