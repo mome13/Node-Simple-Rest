@@ -1,4 +1,10 @@
-const { asyncHandler, BaseError, passwordHandler, OTPHandler } = require('../../utils');
+const {
+	asyncHandler,
+	BaseError,
+	passwordHandler,
+	OTPHandler,
+	isTestOrDevEnv,
+} = require('../../utils');
 const TempAdministrators = require('../../models/administrators/TempAdministrators');
 const Administrators = require('../../models/administrators/Administrators');
 
@@ -22,7 +28,7 @@ const resendCode = asyncHandler(async function (req, res) {
 	const { email } = req.body;
 
 	const confirmOTP = await setNewOTP(email);
-	console.log('your new ConfirmOTP', confirmOTP)
+	if (isTestOrDevEnv()) console.log('your new ConfirmOTP', confirmOTP);
 
 	return res.json({
 		message: 'OTP Updated!',
@@ -30,8 +36,11 @@ const resendCode = asyncHandler(async function (req, res) {
 });
 
 async function setNewOTP(tempAdminEmail) {
-	const confirmOTP = OTPHandler.createOTP()
-	await TempAdministrators.findOneAndUpdate({email: tempAdminEmail}, {confirmOTP});
+	const confirmOTP = OTPHandler.createOTP();
+	await TempAdministrators.findOneAndUpdate(
+		{ email: tempAdminEmail },
+		{ confirmOTP }
+	);
 	return confirmOTP;
 }
 
@@ -50,7 +59,7 @@ async function createTempAdminObject(
 	{ email, password, fullName }
 ) {
 	const hashedPassword = passwordHandler.createPasswordHash(password);
-	const confirmOTP = OTPHandler.createOTP()
+	const confirmOTP = OTPHandler.createOTP();
 	if (alreadyTempAdmin) {
 		await TempAdministrators.updateOne(
 			{ _id: alreadyTempAdmin._id },
@@ -62,14 +71,13 @@ async function createTempAdminObject(
 		email,
 		password: hashedPassword,
 		fullName,
-		confirmOTP
+		confirmOTP,
 	});
 	await newAdmin.save();
 	return newAdmin;
 }
 
-
 module.exports = {
 	createTempAdministrator,
-	resendCode
-}
+	resendCode,
+};

@@ -5,3 +5,7 @@ exports.createPasswordHash = (password) => {
 	const hash = bcrypt.hashSync(password, salt);
 	return hash;
 };
+
+exports.isValidPassword = (enteredPassword, hash) => {
+	return bcrypt.compareSync(enteredPassword, hash)
+};

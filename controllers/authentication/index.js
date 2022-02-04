@@ -1,5 +1,6 @@
-module.exports.register = {
+module.exports = {
 	createAdministrator: require('./registerAdministrator').createTempAdministrator,
 	resendCode: require('./registerAdministrator').resendCode,
-	verifyRegisterAdministrator: require('./verifyRegisterAdministrator')
+	verifyRegisterAdministrator: require('./verifyRegisterAdministrator'),
+	login: require('./loginAdministrator'),
 }
