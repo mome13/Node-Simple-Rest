@@ -6,7 +6,7 @@
 /.vscode/
 .vscode/
 
-/package-lock.json
+
 /log/
 
 *.todo
@@ -21,3 +21,5 @@ coverage
 
 # Optional eslint cache
 .eslintcache
+
+.github
