@@ -26,5 +26,13 @@ exports.registerValidation = (method) => {
 				OTP: Joi.number().required(),
 			}),
 		};
+
+	case 'login':
+		return {
+			body: Joi.object({
+				email: Joi.string().email().required(),
+				password: Joi.string().required(),
+			}),
+		};
 	}
 };
