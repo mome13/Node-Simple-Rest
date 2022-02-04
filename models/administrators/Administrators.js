@@ -16,6 +16,17 @@ const tempAdministratorSchema = new Schema(
 		registerStep: {
 			type: Number,
 		},
+		refreshToken: {
+			createdAt: {
+				type: Date,
+			},
+			value: {
+				type: String,
+			},
+			userAgent: {
+				type: String,
+			},
+		},
 		createdAt: { type: Date, default: Date.now },
 	},
 	{
@@ -24,4 +35,3 @@ const tempAdministratorSchema = new Schema(
 );
 
 module.exports = mongoose.model('Administrator', tempAdministratorSchema);
-
