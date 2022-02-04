@@ -61,7 +61,7 @@ describe('Register', () => {
 				password: user.password,
 				fullName: user.fullName,
 			});
-			newAdmin.save().then(done());
+			newAdmin.save().then(() => done());
 		});
 		it('It should not register duplicate user', (done) => {
 			chai
@@ -69,6 +69,7 @@ describe('Register', () => {
 				.post('/api/auth/register')
 				.send(user)
 				.end((err, res) => {
+					if(err) done(err)
 					res.should.have.status(400);
 					res.body.should.have.property('message').eql('duplicate email');
 					done();
